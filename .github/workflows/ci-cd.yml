@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout do código
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      # 2. Instalação de dependências
+      - name: Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install
+
+      # 3. Etapa de Testes
+      - name: Rodar testes
+        run: npm test
+
+      # 4. Etapa de Build
+      - name: Rodar build
+        run: npm run build
+
+      # 5. Etapa de Deploy (simulado)
+      - name: Deploy simulado
+        run: echo "Simulando deploy da aplicação..."
